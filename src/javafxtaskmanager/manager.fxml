@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainScene" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: #323336;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtaskmanager.managerController">
+   <children>
+      <AnchorPane fx:id="focusScene" layoutX="14.0" layoutY="28.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #535458;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
+         <children>
+            <ListView fx:id="taskListView" layoutX="14.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+            <Button fx:id="addTaskButton" layoutX="434.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: #636468; -fx-background-radius: 30; -fx-text-fill: white;" text="+" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Button>
+            <TextField fx:id="newTaskTextField" layoutX="14.0" layoutY="13.0" promptText="Enter Task" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="12.0" />
+         </children></AnchorPane>
+      <Button fx:id="closeWindowButton" layoutX="458.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #323336; -fx-text-fill: white; -fx-border-radius: 0;" text="X" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0" />
+      <Button fx:id="minimiseWindowButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #323336; -fx-text-fill: white; -fx-background-radius: 0;" text="-" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="0.0" />
+      <Button fx:id="resizeWindowButton" layoutX="79.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" style="-fx-background-color: #323336; -fx-text-fill: white; -fx-background-radius: 0;" text="□" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text fx:id="applicationNameText" fill="WHITE" layoutX="8.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Manager" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+   </children>
+</AnchorPane>
