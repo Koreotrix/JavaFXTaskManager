@@ -9,7 +9,6 @@ import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,11 +21,9 @@ import javafx.util.Duration;
 /**
  *
  * @author Tristan
- * @version 1.0 Initiated project
- *      > added windows functionality
- *      > added task list
- *      > added new task functionality
- *      > added completed task functionality
+ * @version 1.1 Removing tasks from the task list
+ *      > added button to taskListView items
+ *      > added remove functionality to each items in taskListView
  */
 public class managerController implements Initializable {
     
@@ -36,8 +33,8 @@ public class managerController implements Initializable {
     @FXML private ListView taskListView;
     @FXML private TextField newTaskTextField;
     
-    private List<Task> taskList;
-    private ObservableList data;
+    private List<TaskItem> taskList;
+    private ObservableList<TaskItem> data;
     
     private boolean isMaximized;
     
@@ -161,18 +158,27 @@ public class managerController implements Initializable {
         addTaskButton.setOnMouseClicked(event -> {
             
             String task = newTaskTextField.getText();
-            
+
             // tasks will not be added if newTaskTextField is empty
             if (!task.isEmpty()) {
-                taskList.add( 
-                    new Task (
-                        task,
-                        "this is a test",
-                        new Date(),
-                        1
-                    )
-                );
-
+                
+                TaskItem taskItem = new TaskItem (task, "this is a test", 
+                    new Date(), 1);
+                
+                taskList.add(taskItem);
+                
+                // action: removes the selected task from the list
+                Button button = taskItem.getRemoveButton();
+                
+                button.setOnMouseClicked(removeEvent -> {
+                    taskList.remove(taskItem);
+                    taskListView.getItems().remove(taskItem);
+                    
+                    data = FXCollections.observableArrayList(taskList);
+                    taskListView.setItems(data);
+                });
+                
+                // update taskListView
                 data = FXCollections.observableArrayList(taskList);
                 taskListView.setItems(data);
 
@@ -206,15 +212,15 @@ public class managerController implements Initializable {
     private void initializeTaskList() {
         
         // initiating task list view
-        taskList = new ArrayList<Task>();
+        taskList = new ArrayList<TaskItem>();
         
-        data = FXCollections.observableArrayList(taskList);
+        data = FXCollections.observableList(taskList);
         taskListView.setItems(data);
         
         // action: check selected item
         taskListView.setOnMouseClicked(event -> {
             
-            Task task = (Task) taskListView.getSelectionModel().getSelectedItem();
+            TaskItem task = (TaskItem) taskListView.getSelectionModel().getSelectedItem();
             
             String newTitle = task.getTitle();
             if (newTitle.charAt(0) == '✔') {
